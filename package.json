@@ -4,15 +4,15 @@
   "description": "A simple Node.js app for math operations",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "build": "echo 'Building the app'"
+    "test": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml"
   },
   "dependencies": {
     "yargs": "^17.0.0"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
     "mocha": "^9.0.0",
-    "chai": "^4.3.4"
+    "mocha-junit-reporter": "^2.0.0"
   }
 }
 
