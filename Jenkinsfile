@@ -40,11 +40,6 @@ pipeline {
                 unstash(name: 'source-code')
                 sh "npm run build" 
             }
-            post {
-                success {
-                    archiveArtifacts "dist/*" 
-                }
-            }
         }
     }
 }
