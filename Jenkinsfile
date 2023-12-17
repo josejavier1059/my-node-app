@@ -13,6 +13,7 @@ pipeline {
             steps {
                 sh 'npm install'
                 stash(name: 'node-modules', includes: 'node_modules/')
+                stash(name: 'source-code', includes: 'src/,package.json,package-lock.json')
             }
         }
         stage('Test') {
@@ -23,6 +24,7 @@ pipeline {
             }
             steps {
                 unstash(name: 'node-modules')
+                unstash(name: 'source-code')
                 sh 'npm test'
             }
             post {
@@ -34,17 +36,17 @@ pipeline {
         stage('Deliver') { 
             agent any
             steps {
-                dir(path: env.BUILD_ID) { 
-                    unstash(name: 'node-modules') 
-                    sh "npm run build" 
-                }
+                unstash(name: 'node-modules')
+                unstash(name: 'source-code')
+                sh "npm run build" 
             }
             post {
                 success {
-                    archiveArtifacts "${env.BUILD_ID}/dist/*" 
+                    archiveArtifacts "dist/*" 
                 }
             }
         }
     }
 }
+
 
