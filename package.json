@@ -4,7 +4,8 @@
   "description": "A simple Node.js app for math operations",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml"
+    "test": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml",
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "yargs": "^17.0.0"
